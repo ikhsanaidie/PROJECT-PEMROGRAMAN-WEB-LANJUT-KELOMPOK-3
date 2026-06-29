@@ -7,6 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 $nisn = $_GET['id'] ?? '';
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tbl_siswa WHERE nisn = '$nisn'"));

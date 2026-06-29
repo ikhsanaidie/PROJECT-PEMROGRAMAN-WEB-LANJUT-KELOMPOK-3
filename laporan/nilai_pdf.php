@@ -6,9 +6,10 @@ if (!isset($_SESSION['role'])) {
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="Laporan_Nilai.pdf"');
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: inline; filename="Laporan_Nilai.pdf"');
 
 $kelas = $_GET['kelas'] ?? '';
 $mapel = $_GET['mapel'] ?? '';
@@ -29,26 +30,99 @@ if (mysqli_num_rows($result) == 0) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Laporan Nilai</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Times New Roman', Times, serif; padding: 20px; }
-        .kop { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
-        .kop h1 { font-size: 18px; letter-spacing: 2px; }
-        .kop p { font-size: 11px; color: #333; }
-        .kop h2 { font-size: 14px; margin-top: 5px; }
-        .info { font-size: 11px; margin-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; font-size: 9px; }
-        th { background: #1976D2; color: white; padding: 4px 3px; border: 1px solid #000; text-align: center; }
-        td { padding: 3px; border: 1px solid #000; text-align: center; }
-        .ttd { margin-top: 30px; text-align: right; }
-        .ttd p { margin: 2px 0; }
-        .footer { margin-top: 20px; text-align: center; font-size: 9px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
-        .left-text { text-align: left; padding-left: 5px; }
-        @media print { .no-print { display: none; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            padding: 20px;
+        }
+
+        .kop {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .kop h1 {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .kop p {
+            font-size: 11px;
+            color: #333;
+        }
+
+        .kop h2 {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .info {
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9px;
+        }
+
+        th {
+            background: #1976D2;
+            color: white;
+            padding: 4px 3px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        td {
+            padding: 3px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        .ttd {
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        .ttd p {
+            margin: 2px 0;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .left-text {
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="no-print" style="margin-bottom:15px;">
         <button onclick="window.print()">🖨️ Cetak PDF</button>
@@ -63,10 +137,10 @@ if (mysqli_num_rows($result) == 0) {
 
     <div class="info">
         <?php if ($kelas): ?>
-        <strong>Kelas:</strong> <?php echo $kelas; ?> &nbsp;|&nbsp;
+            <strong>Kelas:</strong> <?php echo $kelas; ?> &nbsp;|&nbsp;
         <?php endif; ?>
         <?php if ($mapel): ?>
-        <strong>Mata Pelajaran:</strong> <?php echo $mapel; ?> &nbsp;|&nbsp;
+            <strong>Mata Pelajaran:</strong> <?php echo $mapel; ?> &nbsp;|&nbsp;
         <?php endif; ?>
         <strong>Total:</strong> <?php echo mysqli_num_rows($result); ?> data &nbsp;|&nbsp;
         <strong>Dicetak:</strong> <?php echo date('d F Y H:i:s'); ?>
@@ -92,18 +166,18 @@ if (mysqli_num_rows($result) == 0) {
             $no = 1;
             while ($row = mysqli_fetch_assoc($result)):
             ?>
-            <tr>
-                <td style="text-align:center;"><?php echo $no++; ?></td>
-                <td><?php echo $row['nisn']; ?></td>
-                <td class="left-text"><?php echo $row['nama_siswa']; ?></td>
-                <td><?php echo $row['kelas'] ?? '-'; ?></td>
-                <td class="left-text"><?php echo $row['mata_pelajaran']; ?></td>
-                <td class="left-text"><?php echo $row['guru_pengajar']; ?></td>
-                <td><?php echo $row['tugas']; ?></td>
-                <td><?php echo $row['uts']; ?></td>
-                <td><?php echo $row['uas']; ?></td>
-                <td><strong><?php echo number_format($row['nilai_akhir'], 2); ?></strong></td>
-            </tr>
+                <tr>
+                    <td style="text-align:center;"><?php echo $no++; ?></td>
+                    <td><?php echo $row['nisn']; ?></td>
+                    <td class="left-text"><?php echo $row['nama_siswa']; ?></td>
+                    <td><?php echo $row['kelas'] ?? '-'; ?></td>
+                    <td class="left-text"><?php echo $row['mata_pelajaran']; ?></td>
+                    <td class="left-text"><?php echo $row['guru_pengajar']; ?></td>
+                    <td><?php echo $row['tugas']; ?></td>
+                    <td><?php echo $row['uts']; ?></td>
+                    <td><?php echo $row['uas']; ?></td>
+                    <td><strong><?php echo number_format($row['nilai_akhir'], 2); ?></strong></td>
+                </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
@@ -120,5 +194,12 @@ if (mysqli_num_rows($result) == 0) {
     <div class="footer">
         Dicetak dari Sistem Informasi Akademik SMA PGRI 4 Jakarta
     </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
 </body>
+
 </html>

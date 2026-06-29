@@ -7,6 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 // Ambil data siswa
 $query = "SELECT * FROM tbl_siswa ORDER BY nama";

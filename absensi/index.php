@@ -7,6 +7,7 @@ if (!isset($_SESSION['role'])) {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 $kelas = $_GET['kelas'] ?? '';
 $tanggal = $_GET['tanggal'] ?? date('Y-m-d');

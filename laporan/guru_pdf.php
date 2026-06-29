@@ -6,9 +6,10 @@ if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['ro
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="Laporan_Guru.pdf"');
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: inline; filename="Laporan_Guru.pdf"');
 
 $search = $_GET['search'] ?? '';
 $query = "SELECT * FROM tbl_guru";
@@ -102,5 +103,11 @@ if (mysqli_num_rows($result) == 0) {
     <div class="footer">
         Dicetak dari Sistem Informasi Akademik SMA PGRI 4 Jakarta
     </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
 </body>
 </html>

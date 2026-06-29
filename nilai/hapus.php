@@ -6,6 +6,7 @@ if (!isset($_SESSION['role'])) {
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
 $nisn = $_GET['nisn'] ?? '';
 $mapel = $_GET['mapel'] ?? '';

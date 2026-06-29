@@ -6,6 +6,7 @@ if (!isset($_SESSION['role'])) {
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
 $id = $_GET['id'] ?? '';
 if ($id) {

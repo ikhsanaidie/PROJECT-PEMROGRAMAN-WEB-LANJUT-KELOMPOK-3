@@ -6,9 +6,10 @@ if (!isset($_SESSION['role'])) {
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="Laporan_Absensi.pdf"');
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: inline; filename="Laporan_Absensi.pdf"');
 
 $kelas = $_GET['kelas'] ?? '';
 $tanggal = $_GET['tanggal'] ?? date('Y-m-d');
@@ -38,30 +39,119 @@ if (mysqli_num_rows($siswaList) == 0) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Laporan Absensi</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Times New Roman', Times, serif; padding: 20px; }
-        .kop { text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
-        .kop h1 { font-size: 18px; letter-spacing: 2px; }
-        .kop p { font-size: 11px; color: #333; }
-        .kop h2 { font-size: 14px; margin-top: 5px; }
-        .info { font-size: 11px; margin-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; font-size: 10px; }
-        th { background: #1976D2; color: white; padding: 5px 4px; border: 1px solid #000; text-align: center; }
-        td { padding: 4px; border: 1px solid #000; text-align: center; }
-        .left-text { text-align: left; padding-left: 5px; }
-        .ttd { margin-top: 30px; text-align: right; }
-        .ttd p { margin: 2px 0; }
-        .footer { margin-top: 20px; text-align: center; font-size: 9px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
-        .status-hadir { color: green; font-weight: bold; }
-        .status-sakit { color: orange; font-weight: bold; }
-        .status-izin { color: blue; font-weight: bold; }
-        .status-alpa { color: red; font-weight: bold; }
-        @media print { .no-print { display: none; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            padding: 20px;
+        }
+
+        .kop {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .kop h1 {
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        .kop p {
+            font-size: 11px;
+            color: #333;
+        }
+
+        .kop h2 {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .info {
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        th {
+            background: #1976D2;
+            color: white;
+            padding: 5px 4px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        td {
+            padding: 4px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        .left-text {
+            text-align: left;
+            padding-left: 5px;
+        }
+
+        .ttd {
+            margin-top: 30px;
+            text-align: right;
+        }
+
+        .ttd p {
+            margin: 2px 0;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 9px;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .status-hadir {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-sakit {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .status-izin {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .status-alpa {
+            color: red;
+            font-weight: bold;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="no-print" style="margin-bottom:15px;">
         <button onclick="window.print()">🖨️ Cetak PDF</button>
@@ -78,9 +168,9 @@ if (mysqli_num_rows($siswaList) == 0) {
         <strong>Kelas:</strong> <?php echo $kelas; ?> &nbsp;|&nbsp;
         <strong>Wali Kelas:</strong> <?php echo $waliKelas; ?> &nbsp;|&nbsp;
         <?php if ($mode == 'harian'): ?>
-        <strong>Tanggal:</strong> <?php echo $tanggal; ?>
+            <strong>Tanggal:</strong> <?php echo $tanggal; ?>
         <?php else: ?>
-        <strong>Periode:</strong> <?php echo date('F', mktime(0,0,0,$bulan,1)); ?> <?php echo $tahun; ?>
+            <strong>Periode:</strong> <?php echo date('F', mktime(0, 0, 0, $bulan, 1)); ?> <?php echo $tahun; ?>
         <?php endif; ?>
     </div>
 
@@ -93,12 +183,12 @@ if (mysqli_num_rows($siswaList) == 0) {
                 <th>Kelas</th>
                 <th>Wali Kelas</th>
                 <?php if ($mode == 'harian'): ?>
-                <th>Status</th>
+                    <th>Status</th>
                 <?php else: ?>
-                <th>Hadir</th>
-                <th>Sakit</th>
-                <th>Izin</th>
-                <th>Alpa</th>
+                    <th>Hadir</th>
+                    <th>Sakit</th>
+                    <th>Izin</th>
+                    <th>Alpa</th>
                 <?php endif; ?>
             </tr>
         </thead>
@@ -111,7 +201,7 @@ if (mysqli_num_rows($siswaList) == 0) {
                     $abs = mysqli_fetch_assoc(mysqli_query($conn, "SELECT status FROM tbl_absensi WHERE tanggal = '$tanggal' AND nisn = '{$row['nisn']}'"));
                     if ($abs) $status = $abs['status'];
                     $cls = $status == 'Hadir' ? 'status-hadir' : ($status == 'Sakit' ? 'status-sakit' : ($status == 'Izin' ? 'status-izin' : ($status == 'Alpa' ? 'status-alpa' : '')));
-                    ?>
+            ?>
                     <tr>
                         <td><?php echo $no++; ?></td>
                         <td><?php echo $row['nisn']; ?></td>
@@ -120,12 +210,15 @@ if (mysqli_num_rows($siswaList) == 0) {
                         <td><?php echo $waliKelas; ?></td>
                         <td class="<?php echo $cls; ?>"><?php echo $status; ?></td>
                     </tr>
-                    <?php
+                <?php
                 } else {
                     $tglAwal = $tahun . '-' . $bulan . '-01';
                     $tglAkhir = $tahun . '-' . $bulan . '-' . date('t', strtotime($tglAwal));
-                    
-                    $hadir = 0; $sakit = 0; $izin = 0; $alpa = 0;
+
+                    $hadir = 0;
+                    $sakit = 0;
+                    $izin = 0;
+                    $alpa = 0;
                     $absList = mysqli_query($conn, "SELECT status FROM tbl_absensi WHERE nisn = '{$row['nisn']}' AND tanggal BETWEEN '$tglAwal' AND '$tglAkhir'");
                     while ($a = mysqli_fetch_assoc($absList)) {
                         if ($a['status'] == 'Hadir') $hadir++;
@@ -133,7 +226,7 @@ if (mysqli_num_rows($siswaList) == 0) {
                         elseif ($a['status'] == 'Izin') $izin++;
                         elseif ($a['status'] == 'Alpa') $alpa++;
                     }
-                    ?>
+                ?>
                     <tr>
                         <td><?php echo $no++; ?></td>
                         <td><?php echo $row['nisn']; ?></td>
@@ -145,7 +238,7 @@ if (mysqli_num_rows($siswaList) == 0) {
                         <td><?php echo $izin; ?></td>
                         <td><?php echo $alpa; ?></td>
                     </tr>
-                    <?php
+            <?php
                 }
             endwhile;
             ?>
@@ -164,5 +257,12 @@ if (mysqli_num_rows($siswaList) == 0) {
     <div class="footer">
         Dicetak dari Sistem Informasi Akademik SMA PGRI 4 Jakarta
     </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
 </body>
+
 </html>

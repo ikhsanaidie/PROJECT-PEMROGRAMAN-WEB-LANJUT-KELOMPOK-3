@@ -7,6 +7,7 @@ if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['ro
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 $search = $_GET['search'] ?? '';
 
@@ -86,6 +87,7 @@ function resetFilter() {
 document.getElementById('searchInput').addEventListener('keyup', function(e) {
     if (e.key === 'Enter') cariData();
 });
+
 </script>
 
 <?php include '../includes/footer.php'; ?>

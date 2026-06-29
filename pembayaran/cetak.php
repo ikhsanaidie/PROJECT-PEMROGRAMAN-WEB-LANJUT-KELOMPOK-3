@@ -2,6 +2,7 @@
 // pembayaran/cetak.php
 session_start();
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
 $nisn = $_GET['nisn'] ?? '';
 $data = mysqli_query($conn, "SELECT * FROM tbl_pembayaran WHERE nisn = '$nisn' ORDER BY id_pembayaran DESC LIMIT 1");

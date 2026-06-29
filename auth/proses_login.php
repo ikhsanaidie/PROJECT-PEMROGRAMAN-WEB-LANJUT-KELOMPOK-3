@@ -2,6 +2,7 @@
 // auth/proses_login.php
 session_start();
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
 $role = $_POST['role'] ?? '';
 $username = $_POST['username'] ?? '';

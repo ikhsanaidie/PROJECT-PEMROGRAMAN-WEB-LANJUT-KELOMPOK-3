@@ -7,6 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 // Ambil data guru
 $result = mysqli_query($conn, "SELECT * FROM tbl_guru ORDER BY nama_guru");

@@ -7,6 +7,7 @@ if (!isset($_SESSION['role'])) {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 // Ambil data profil dari database (jika ada) atau hardcode
 // Di sini saya hardcode karena data profil sekolah jarang berubah

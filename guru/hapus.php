@@ -6,6 +6,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 include '../config/koneksi.php';
+/** @var mysqli $conn */
 
 $nip = $_GET['id'] ?? '';
 if ($nip) {

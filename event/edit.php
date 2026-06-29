@@ -7,6 +7,7 @@ if (!isset($_SESSION['role'])) {
 }
 include '../config/koneksi.php';
 include '../includes/header.php';
+/** @var mysqli $conn */
 
 $id = $_GET['id'] ?? '';
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tbl_event WHERE id_event = '$id'"));
