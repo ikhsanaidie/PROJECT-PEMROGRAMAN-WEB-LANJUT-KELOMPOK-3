@@ -122,17 +122,20 @@ if (isset($_POST['simpan'])) {
             class="form-control"
             required>
     </div>
-    <button
-        type="submit"
-        name="simpan"
-        class="btn btn-primary">
-        💾 Simpan Password
-    </button>
-    
-        href="../dashboard/index.php"
-        class="btn btn-secondary">
-        Kembali
-    </a>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button
+            type="submit"
+            name="simpan"
+            class="btn btn-primary">
+            💾 Simpan Password
+        </button>
+
+        <a
+            href="../dashboard/index.php"
+            class="btn btn-primary">
+            ⬅️ Kembali
+        </a>
+    </div>
 </form>
 </div>
 

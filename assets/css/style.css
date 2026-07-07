@@ -398,6 +398,92 @@ select.form-control {
     border-radius: 6px;
 }
 
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .navbar {
+        height: auto;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .navbar-left,
+    .navbar-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navbar-right {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .footer {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 16px;
+        gap: 4px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 13px;
+    }
+
+    .clock {
+        display: none;
+    }
+
+    .user-name {
+        font-size: 12px;
+    }
+
+    .login-card {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        flex: 1 1 auto;
+        padding: 24px 20px;
+    }
+
+    .login-logo h1 {
+        font-size: 20px;
+    }
+
+    .login-right .quote-text {
+        font-size: 15px;
+    }
+
+    .btn:not(.btn-logout) {
+        width: 100%;
+    }
+
+    .menu-item {
+        padding: 10px 16px;
+    }
+
+    .sub-menu {
+        padding-left: 24px;
+    }
+}
+
 .btn-block {
     display: block;
     width: 100%;

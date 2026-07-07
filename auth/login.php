@@ -45,7 +45,6 @@ include '../config/koneksi.php';
                         <div class="input-with-icon" style="position:relative;">
                             <span class="input-icon">🔒</span>
                             <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan password" required style="padding-right:40px;">
-                            <button type="button" onclick="togglePassword('password', this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;">👁</button>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
@@ -62,6 +61,14 @@ include '../config/koneksi.php';
     </div>
 
     <script>
+        function togglePassword(inputId, button) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+        }
+
         const quotes = [
             "Pendidikan adalah senjata paling ampuh untuk mengubah dunia.",
             "Belajar tanpa berpikir tidak ada gunanya, berpikir tanpa belajar itu berbahaya.",
