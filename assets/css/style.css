@@ -92,7 +92,7 @@ body {
     color: white;
     flex-shrink: 0;
     overflow-y: auto;
-    height: calc(100vh - 92px);
+    height: auto;
     position: sticky;
     top: 60px;
 }

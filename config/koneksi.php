@@ -1,9 +1,9 @@
 <?php
 // config/koneksi.php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$dbname = 'db_siakad';
+$host = 'sql202.infinityfree.com';
+$user = 'if0_42346917';
+$pass = 'M8mpOrCLefaI';
+$dbname = 'if0_42346917_db_siakad';
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
 

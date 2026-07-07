@@ -14,8 +14,8 @@ if (!$row) {
 }
 
 // Header PDF
-header('Content-Type: application/pdf');
-header('Content-Disposition: inline; filename="kwitansi_' . $row['nisn'] . '.pdf"');
+// header('Content-Type: application/pdf');
+// header('Content-Disposition: inline; filename="kwitansi_' . $row['nisn'] . '.pdf"');
 
 // Simple PDF using fPDF (if available) or HTML to PDF
 // Untuk demo, kita tampilkan HTML yang bisa di-print
@@ -104,5 +104,11 @@ header('Content-Disposition: inline; filename="kwitansi_' . $row['nisn'] . '.pdf
             </tr>
         </table>
     </div>
+
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
