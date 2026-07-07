@@ -19,7 +19,14 @@ if (session_status() === PHP_SESSION_NONE) {
         <nav class="navbar">
             <div class="navbar-left">
                 <img src="../assets/img/smapgri4.png" alt="Logo" class="logo-small">
-                <span class="app-title">SIAKAD - SMA PGRI 4 JAKARTA</span>
+                <div class="navbar-title-group">
+                    <span id="appTitle" class="app-title">SIAKAD - SMA PGRI 4 JAKARTA</span>
+                    <button id="sidebarToggle" class="btn-toggle-sidebar" aria-label="Toggle sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
             <div class="navbar-right">
                 <span class="clock" id="clock"></span>
@@ -30,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
         <div class="main-content">
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar" id="sidebar">
                 <?php include 'sidebar.php'; ?>
             </div>
 

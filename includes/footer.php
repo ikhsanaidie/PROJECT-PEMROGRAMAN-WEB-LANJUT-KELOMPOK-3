@@ -23,6 +23,27 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // Sidebar toggle
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const titleGroup = document.querySelector('.navbar-title-group');
+
+        if (sidebarToggle && sidebar) {
+            // Pulihkan status terakhir dari localStorage
+            if (localStorage.getItem('sidebarCollapsed') === 'true') {
+                sidebar.classList.add('collapsed');
+                if (titleGroup) titleGroup.classList.add('collapsed');
+            }
+
+            sidebarToggle.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+                if (titleGroup) {
+                    titleGroup.classList.toggle('collapsed');
+                }
+                localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+            });
+        }
     </script>
 </body>
 </html>

@@ -98,16 +98,14 @@ $siswa_tunggakan = $tunggakan_data['siswa'] ?? 0;
 <div class="card" style="margin-top:20px;">
     <div class="card-title">📊 Statistik Siswa</div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:center;">
-
-        <div style="width:350px;">
+    <div class="chart-grid">
+        <div class="chart-card">
             <canvas id="genderChart"></canvas>
         </div>
 
-        <div style="width:500px;">
+        <div class="chart-card">
             <canvas id="kelasChart"></canvas>
         </div>
-
     </div>
 </div>
 
@@ -136,11 +134,15 @@ $siswa_tunggakan = $tunggakan_data['siswa'] ?? 0;
                 data: [
                     <?php echo $total_laki; ?>,
                     <?php echo $total_perempuan; ?>
-                ]
+                ],
+                backgroundColor: ['#42A5F5', '#F06292'],
+                borderColor: ['#1E88E5', '#EC407A'],
+                borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'bottom'
@@ -155,11 +157,29 @@ $siswa_tunggakan = $tunggakan_data['siswa'] ?? 0;
             labels: <?php echo json_encode($kelas_chart); ?>,
             datasets: [{
                 label: 'Jumlah Siswa',
-                data: <?php echo json_encode($jumlah_chart); ?>
+                data: <?php echo json_encode($jumlah_chart); ?>,
+                backgroundColor: '#1976D2',
+                borderColor: '#1565C0',
+                borderWidth: 1,
+                borderRadius: 6,
+                maxBarThickness: 36
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.parsed.y + ' siswa';
+                        }
+                    }
+                }
+            },
             scales: {
                 y: {
                     beginAtZero: true,
